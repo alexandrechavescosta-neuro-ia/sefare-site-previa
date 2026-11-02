@@ -52,6 +52,11 @@
   overflow: hidden;
   /* em viewports artificiais (prints altos), evita hero de milhares de px */
   max-height: none;
+  background:
+    radial-gradient(ellipse 55% 50% at 85% 15%, rgba(103, 97, 240, 0.16), transparent 60%),
+    radial-gradient(ellipse 45% 40% at 10% 85%, rgba(60, 140, 238, 0.12), transparent 55%),
+    radial-gradient(ellipse 30% 30% at 50% 50%, rgba(103, 97, 240, 0.05), transparent 70%),
+    linear-gradient(165deg, #F7F7FC 0%, #EEF0FB 45%, #F7F7FC 100%);
 }
 
 .print-mode .home-hero {
@@ -65,11 +70,6 @@
 
 .print-mode .home-hero-visual {
   min-height: 16rem;
-}
-
-.print-mode .home-hero-brand {
-  width: min(240px, 70vw);
-  margin-bottom: 1rem;
 }
 
 .print-mode .team-photo,
@@ -106,18 +106,37 @@
 .print-mode .benefit-list li {
   padding: 0.65rem 0.75rem;
 }
-  background:
-    radial-gradient(ellipse 55% 50% at 85% 15%, rgba(103, 97, 240, 0.16), transparent 60%),
-    radial-gradient(ellipse 45% 40% at 10% 85%, rgba(60, 140, 238, 0.12), transparent 55%),
-    radial-gradient(ellipse 30% 30% at 50% 50%, rgba(103, 97, 240, 0.05), transparent 70%),
-    linear-gradient(165deg, #F7F7FC 0%, #EEF0FB 45%, #F7F7FC 100%);
-}
 
 .home-hero-canvas {
   position: absolute;
   inset: 0;
   pointer-events: none;
   overflow: hidden;
+  z-index: 0;
+  opacity: 0.55;
+}
+
+@media (max-width: 959px) {
+  .home-hero-canvas {
+    opacity: 0.18;
+  }
+
+  .home-hero-canvas .hero-network {
+    transform: translate(28%, -12%) scale(1.08);
+    opacity: 0.4;
+  }
+
+  .home-hero-canvas .hero-blob {
+    opacity: 0.35;
+  }
+}
+
+@media (min-width: 960px) {
+  .home-hero-canvas {
+    /* linhas ficam mais à direita, longe do texto */
+    clip-path: inset(0 0 0 42%);
+    opacity: 0.5;
+  }
 }
 
 .cursor-glow {
@@ -270,21 +289,20 @@
 }
 
 .home-hero-copy {
-  max-width: 36rem;
-}
-
-.home-hero-brand {
-  width: min(280px, 72vw);
-  height: auto;
-  margin-bottom: 1.35rem;
+  position: relative;
+  z-index: 2;
+  max-width: 38rem;
+  background: linear-gradient(90deg, rgba(247, 247, 252, 0.92) 0%, rgba(247, 247, 252, 0.78) 70%, transparent 100%);
+  padding: 0.25rem 0.35rem 0.25rem 0;
+  border-radius: 0.35rem;
 }
 
 .home-hero h1 {
-  font-size: clamp(2.15rem, 6.8vw, 3.85rem);
-  line-height: 1.05;
-  max-width: 13ch;
+  font-size: clamp(1.85rem, 5.2vw, 3.1rem);
+  line-height: 1.12;
+  max-width: 18ch;
   margin-bottom: 1rem;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.03em;
 }
 
 .home-hero h1 .grad-word {
@@ -296,12 +314,19 @@
 
 .home-hero .lead {
   font-size: clamp(1.02rem, 2.2vw, 1.15rem);
-  max-width: 34rem;
+  max-width: 36rem;
   margin-bottom: 0;
 }
 
+.home-hero .cta-hint {
+  margin: 0.65rem 0 0;
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+  max-width: 32rem;
+}
+
 .home-hero .hero-ctas {
-  margin: 1.65rem 0 1.15rem;
+  margin: 1.45rem 0 0.35rem;
 }
 
 .home-hero .btn {
@@ -324,25 +349,58 @@
 
 .home-hero-visual {
   position: relative;
-  min-height: 16rem;
+  z-index: 1;
+  min-height: 14rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.hero-orbit-svg {
-  width: min(100%, 480px);
-  height: auto;
-  filter: drop-shadow(0 22px 48px rgba(103, 97, 240, 0.22));
+.hero-stages {
+  width: min(100%, 420px);
+  padding: 1.1rem 1rem 1rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(103, 97, 240, 0.12);
+  box-shadow: 0 16px 40px rgba(21, 21, 41, 0.06);
 }
 
-.hero-orbit-svg .orbit-spin {
-  transform-origin: 210px 190px;
-  animation: orbitSpin 28s linear infinite;
+.hero-stages-title {
+  margin: 0 0 0.85rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--lilas);
 }
 
-@keyframes orbitSpin {
-  to { transform: rotate(360deg); }
+.hero-stages-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.hero-stages-list li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.65rem;
+  align-items: center;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--marinho);
+}
+
+.hero-stages-list .n {
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 0.78rem;
+  color: #fff;
+  background: var(--gradiente);
 }
 
 /* ——— Marquee path ——— */
@@ -1441,20 +1499,21 @@
 @media (max-width: 480px) {
   .home-hero {
     min-height: auto;
-    padding: 2rem 0 2.5rem;
+    padding: 1.75rem 0 2rem;
   }
 
   .home-hero h1 {
     max-width: none;
-    font-size: clamp(1.85rem, 9vw, 2.35rem);
+    font-size: clamp(1.55rem, 7.5vw, 2rem);
   }
 
+  .home-hero-copy {
+    background: rgba(247, 247, 252, 0.94);
+  }
+
+  /* Etapas já estão em "Como funciona"; no celular some o bloco visual do hero */
   .home-hero-visual {
-    min-height: 12rem;
-  }
-
-  .hero-orbit-svg {
-    width: min(100%, 300px);
+    display: none;
   }
 
   .phone {
@@ -1473,7 +1532,7 @@
   }
 
   .hero-blob {
-    opacity: 0.28;
+    opacity: 0.2;
     filter: blur(4px);
   }
 
@@ -1484,7 +1543,7 @@
 
 @media (max-width: 360px) {
   .home-hero h1 {
-    font-size: 1.7rem;
+    font-size: 1.45rem;
   }
 
   .home-card,
@@ -1501,6 +1560,11 @@
 /* Desktop: visual no hero mais presente */
 @media (min-width: 960px) {
   .home-hero-visual {
-    min-height: 22rem;
+    min-height: 18rem;
   }
+}
+
+/* Bloco curto "Quem está por trás" na home */
+.home-page .quem-block {
+  margin-top: 0.5rem;
 }
