@@ -1361,6 +1361,7 @@ p {
 .quem-block--short .quem-foto { width: 104px; height: 104px; border-radius: 50%; object-position: center 30%; }
 .quem-block--full .quem-foto { object-position: center 25%; }
 @media (max-width: 640px) {
+  .quem-block--short { grid-template-columns: 80px 1fr; align-items: start; }
   .quem-block--short .quem-foto { width: 80px; height: 80px; }
   .quem-block--full .quem-foto { width: 140px; height: 175px; }
 }
