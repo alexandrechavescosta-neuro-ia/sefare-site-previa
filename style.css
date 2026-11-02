@@ -1013,3 +1013,42 @@ p {
     border-radius: 50%;
   }
 }
+
+/* Atendimento clínico: link discreto para o site da clínica */
+.btn-clinica {
+  display: none;
+  align-items: center;
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid rgba(103, 97, 240, 0.35);
+  border-radius: 0.5rem;
+  color: var(--marinho);
+  background: transparent;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.btn-clinica:hover,
+.btn-clinica:focus-visible {
+  border-color: var(--lilas);
+  color: var(--lilas);
+  background: rgba(103, 97, 240, 0.06);
+}
+.btn-clinica-rodape {
+  display: inline-flex;
+  color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.35);
+  margin-top: 0.25rem;
+}
+.btn-clinica-rodape:hover,
+.btn-clinica-rodape:focus-visible {
+  color: #fff;
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+@media (min-width: 1100px) {
+  .header-actions .btn-clinica { display: inline-flex; margin-right: 0.5rem; }
+  .nav-clinica-m { display: none; }
+}
