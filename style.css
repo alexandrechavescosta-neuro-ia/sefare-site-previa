@@ -1223,3 +1223,29 @@ body.app-page { padding-top: 0; }
   .app-xp-fill { transition: none; }
   .phone-bar > span { transition: none; }
 }
+
+/* Atendimento clínico sempre visível no topo */
+.btn-clinica:not(.btn-clinica-rodape) {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  border: 1px solid rgba(103, 97, 240, 0.35);
+  border-radius: 999px;
+  color: var(--lilas);
+  background: #fff;
+  font-size: 0.8rem;
+  padding: 0.38rem 0.8rem;
+  line-height: 1.2;
+}
+@media (max-width: 1240px) and (min-width: 981px) {
+  .site-nav ul { gap: 0.15rem 0.8rem; }
+  .site-nav a { font-size: 0.86rem; }
+}
+@media (max-width: 980px) {
+  .nav-clinica-m { display: none; }
+}
+@media (max-width: 420px) {
+  .header-inner { gap: 0.5rem; }
+  .brand-logo { height: 24px; }
+  .btn-clinica:not(.btn-clinica-rodape) { font-size: 0.74rem; padding: 0.34rem 0.6rem; }
+}
